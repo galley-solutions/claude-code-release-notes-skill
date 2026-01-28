@@ -12,12 +12,81 @@ You are creating a release note using the brand-compliant HTML template.
 Before doing anything else, determine the base path for this skill's files:
 
 1. Look for the `release-notes` folder in the workspace root
-2. If not found, search for a folder containing `templates/template.html`
+2. If not found, search for a folder containing `templates/template-standard.html`
 3. Store this path as `RELEASE_NOTES_BASE` for use throughout this skill
 
-## Template Location
+## Template Selection
 
-The template is located at: `{RELEASE_NOTES_BASE}/templates/template.html`
+Templates are located at: `{RELEASE_NOTES_BASE}/templates/`
+
+### Available Templates
+
+| Template | File | Best For |
+|----------|------|----------|
+| **Standard** | `template-standard.html` | Full feature announcements, new capabilities, how-to guides |
+| **Quick Update** | `template-quick-update.html` | Bug fixes, minor improvements, patch notes, small enhancements |
+| **Before & After** | `template-before-after.html` | Feature improvements, redesigns, UX enhancements, visual transformations |
+| **Comprehensive** | `template-comprehensive.html` | Major launches, flagship features, detailed documentation, training materials |
+
+### Template Descriptions
+
+**1. Standard Template** (Default)
+- Full-featured layout with all sections
+- Hero image, step-by-step instructions, feature lists, icon grid
+- Callout box, requirements section, demo GIF
+- Best for: Feature launches, detailed documentation
+
+**2. Quick Update Template**
+- Minimal, scannable layout
+- Compact header with update type badge (Fix/Enhancement/Improvement)
+- Checklist-style changes with checkmarks
+- Optional quick tip box
+- Best for: Bug fixes, small improvements, patch releases
+
+**3. Before & After Template**
+- Visual comparison-focused layout
+- "Before" section (gray, showing old pain points)
+- "After" section (green, showing new benefits)
+- Side-by-side image comparison slots
+- Impact stats section (percentages, metrics)
+- Best for: Redesigns, workflow improvements, UX updates
+
+**4. Comprehensive Template**
+- Most detailed, multi-section layout
+- Table of contents, executive summary box
+- Numbered feature cards with detailed descriptions
+- Step-by-step instructions with individual images per step
+- Video embed section, FAQ section
+- Requirements table, pro tips callout
+- Related features grid, dual CTAs
+- Best for: Major product launches, flagship features, training materials
+
+### Step: Ask User for Template Choice
+
+**IMPORTANT: Before any other steps, use `AskUserQuestion` to ask which template to use.**
+
+Use this exact question format:
+
+```
+AskUserQuestion with:
+- question: "Which template would you like to use for this release note?"
+- header: "Template"
+- options:
+  1. label: "Standard (Recommended)"
+     description: "Full layout with hero image, steps, feature lists, callout box, demo GIF. Best for new features."
+  2. label: "Quick Update"
+     description: "Minimal layout with checklist of changes. Best for bug fixes and small improvements."
+  3. label: "Before & After"
+     description: "Visual comparison with before/after sections and metrics. Best for improvements and redesigns."
+  4. label: "Comprehensive"
+     description: "Extensive layout with TOC, FAQ, video section, and detailed feature cards. Best for major launches."
+```
+
+Based on the user's choice, use the corresponding template file:
+- **Standard** → `template-standard.html`
+- **Quick Update** → `template-quick-update.html`
+- **Before & After** → `template-before-after.html`
+- **Comprehensive** → `template-comprehensive.html`
 
 ## Brand Guidelines
 
@@ -135,7 +204,7 @@ Use the `AskUserQuestion` tool to gather the following information.
 
 ## Step 2: Generate the Release Note
 
-Read the template file and fill in all the placeholders:
+Read the selected template file and fill in all the placeholders:
 
 1. Replace `[Feature Title Goes Here]` with the feature title
 2. Replace `[Tagline or subtitle]` with the tagline
@@ -190,6 +259,19 @@ mkdir -p {RELEASE_NOTES_BASE}/generated
 Save the completed HTML file to:
 `{RELEASE_NOTES_BASE}/generated/[filename].html`
 
+**Folder Structure:**
+```
+release-notes/
+├── templates/
+│   ├── template-standard.html       # Full feature announcements
+│   ├── template-quick-update.html   # Bug fixes, minor updates
+│   ├── template-before-after.html   # Improvements, redesigns
+│   └── template-comprehensive.html  # Major launches, training docs
+├── ICON-GUIDE.md                    # Icon reference guide
+└── generated/                       # All generated release notes go here
+    └── ...
+```
+
 ## Step 5: Confirm and Preview
 
 1. Tell the user the file has been created and provide the path
@@ -202,7 +284,17 @@ Save the completed HTML file to:
 
 **User**: `/release-notes` for the new bulk import feature
 
-**Claude**: I'll help you create a release note. Let me gather some details.
+**Claude**: I'll help you create a release note for the bulk import feature.
+
+*First, uses AskUserQuestion to ask which template:*
+- Standard (Recommended) - Full layout for new features
+- Quick Update - Minimal, for bug fixes
+- Before & After - Visual comparison for improvements
+- Comprehensive - Extensive layout for major launches
+
+**User**: *Selects "Standard"*
+
+**Claude**: Great choice! Let me gather some details about the feature.
 
 *Uses AskUserQuestion to ask about:*
 - Feature title and tagline
