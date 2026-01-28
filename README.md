@@ -12,6 +12,40 @@ A Claude Code skill that generates professional, brand-compliant HTML release no
 - Consistent voice and tone guidelines
 - Auto-generated filenames with date prefixes
 
+## Quick Setup with Claude Code
+
+The easiest way to install this skill is to let Claude Code do it for you.
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/galley-solutions/claude-code-release-notes-skill.git release-notes-skill
+```
+
+### Step 2: Ask Claude to Set It Up
+
+In Claude Code, simply say:
+
+```
+Please read and follow the instructions in release-notes-skill/SETUP.md to set up the /release-notes skill
+```
+
+Claude will:
+1. Create the necessary folder structure
+2. Copy all templates to the right location
+3. Set up the skill definition with correct paths
+4. Confirm when everything is ready
+
+### Step 3: Start Using It
+
+Once setup is complete, use the skill by typing:
+
+```
+/release-notes for the new feature you want to document
+```
+
+---
+
 ## Templates
 
 | Template | File | Best For |
@@ -61,7 +95,9 @@ Most detailed, multi-section layout:
 - Related features grid
 - Dual CTAs
 
-## Installation
+## Manual Installation
+
+If you prefer to install manually instead of using the quick setup:
 
 ### Option 1: Clone to Your Project
 
@@ -78,7 +114,9 @@ mkdir -p .claude/skills/release-notes
 cp release-notes/.claude/skills/release-notes/SKILL.md .claude/skills/release-notes/
 ```
 
-### Option 2: Manual Installation
+**Important:** Edit the SKILL.md file and replace all `{RELEASE_NOTES_BASE}` placeholders with your actual path (e.g., `/path/to/your/project/release-notes`).
+
+### Option 2: Manual File Copy
 
 1. **Download the repository** or copy the files manually
 
@@ -104,6 +142,9 @@ your-project/
 3. **Copy the files**:
    - Copy `SKILL.md` to `.claude/skills/release-notes/`
    - Copy `templates/`, `ICON-GUIDE.md` to `release-notes/`
+
+4. **Update paths in SKILL.md**:
+   - Replace `{RELEASE_NOTES_BASE}` with your actual release-notes folder path
 
 ## Configuration
 
@@ -201,6 +242,7 @@ release-notes/
 ├── generated/                        # Output folder (auto-created)
 │   └── .gitkeep
 ├── ICON-GUIDE.md                     # Icon and illustration reference
+├── SETUP.md                          # Setup instructions for Claude
 ├── README.md                         # This file
 └── .gitignore
 ```
@@ -317,6 +359,10 @@ The skill will create the folder automatically, but you can create it manually:
 ```bash
 mkdir -p release-notes/generated
 ```
+
+### Path Placeholders Not Replaced
+
+If you see `{RELEASE_NOTES_BASE}` in error messages, edit SKILL.md and replace all instances with your actual path.
 
 ## Contributing
 
