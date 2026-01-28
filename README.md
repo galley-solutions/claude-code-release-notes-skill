@@ -18,7 +18,7 @@ A Claude Code skill that generates professional, brand-compliant HTML release no
 Clone this repository into your project's root directory:
 
 ```bash
-git clone https://github.com/phmeireles/claude-code-release-notes-skill.git release-notes
+git clone https://github.com/galley-solutions/claude-code-release-notes-skill.git release-notes
 ```
 
 Then copy the skill definition to your `.claude/skills` folder:
