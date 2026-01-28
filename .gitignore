@@ -1,0 +1,13 @@
+# Generated release notes (keep the folder, ignore contents)
+generated/*.html
+generated/*.md
+!generated/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
